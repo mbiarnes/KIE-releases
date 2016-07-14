@@ -12,6 +12,8 @@ sh /home/mbiarnes/.jenkins/workspace/01.push-release-branches-6.4.x/KIE-releases
 
 """
 job("01.push-release-branches-6.4.x") {
+
+  description("This job: <br> - clones all repositories <br> - upgrades the version in poms <br> - modifies the kie-parent-metadata pom <br> - pushes the generated release branches to jboss-integration")
   
   parameters {
     stringParam("TARGET", "productized", "this release is for community")
