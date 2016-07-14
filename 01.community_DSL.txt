@@ -7,8 +7,8 @@ git clone git@github.com:mbiarnes/KIE-releases.git
 
 def cloneScript_02 =
 """
-cd /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job
-sh /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
+cd /home/mbiarnes/.jenkins/workspace/created-DSL-community-release-job
+sh /home/mbiarnes/.jenkins/workspace/created-DSL-community-release-job/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
 
 """
 job("automatic-created-DSL-release-job") {
@@ -42,14 +42,14 @@ job("automatic-created-DSL-release-job") {
   }
 }
 
-listView("automatic-created-release-View") {
+listView("created-release-View") {
     
     description("all automatic jobs created by DSL")
     filterBuildQueue()
     filterExecutors()
     
     jobs {
-        name("automatic-created-DSL-release-job")
+        name("created-DSL-community-release-job")
     }
     
     jobFilters {
