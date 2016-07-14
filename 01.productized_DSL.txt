@@ -14,13 +14,13 @@ sh /home/mbiarnes/.jenkins/workspace/01.push-release-branches-6.4.x/KIE-releases
 job("01.push-release-branches-6.4.x") {
   
   parameters {
-    stringParam("TARGET", "community", "this release is for community")
-    choiceParam("SOURCE", ["community-branch", "community-tag"], " please select the source of this release <br> or it is the 6.4.x branch ( <b> community-branch </b> ) a community tag. <br> ******************************************************** <br> ")
-    stringParam("TAG", "6.4.0.Final", "if you selected as <b> SOURCE= </b> community-tag please edit the name of the tag <br> if selected as <b> SOURCE= </b> community-branch the parameter <b> TAG </b> will be ignored <br> i.e. typically <b> 6.4.0.Final </b> <br> ******************************************************** <br> ")
-    stringParam("RELEASE_VERSION", "6.4.0.Final", "please edit the version for this release <br> i.e. typically <b> 6.4.0.Final </b> <br> ******************************************************** <br> ")
-    stringParam("RELEASE_BRANCH", "r6.4.0.Final", "please edit the name of the release branch <br> i.e. typically <b> r6.4.0.Final </b> <br> ******************************************************** <br> ")
-    stringParam("UBERFIRE_VERSION", "0.8.0.Final", "please edit the right version to use of uberfire/uberfire-extensions <br> ******************************************************** <br> ")
-    stringParam("DASHBUILDER_VERSION", "0.4.0.Final", "please edit the right version to use of dashbuilder <br> ******************************************************** <br> ")
+    stringParam("TARGET", "productized", "this release is for community")
+    choiceParam("SOURCE", ["community-branch", "community-tag", "production-tag"], " please select the source of this release <br> or it is the 6.4.x branch ( <b> community-branch </b> ) a community tag ( <b> community-tag </b> ) or a product tag ( <b> propduct-tag </b> ) <br> ******************************************************** <br> ")
+    stringParam("TAG", "sync-6.4.x-2016.07.30", "if you selected as <b> SOURCE= </b> community-tag or product-tag please edit the name of the tag <br> if selected as <b> SOURCE= </b> community-branch the parameter <b> TAG </b> will be ignored <br> i.e. typically <b> sync-6.4.x-2016.07.30</b> <br> ******************************************************** <br> ")
+    stringParam("RELEASE_VERSION", "6.4.1.20160730-productized", "please edit the version for this release <br> i.e. typically <b> 6.4.1.20160730-productized </b> <br> ******************************************************** <br> ")
+    stringParam("RELEASE_BRANCH", "bsync-6.4.x-2016.07.30", "please edit the name of the release branch <br> i.e. typically <b> bsync-6.4.x-2016.07.30 </b> <br> ******************************************************** <br> ")
+    stringParam("UBERFIRE_VERSION", "0.8.1.20160730-productized", "please edit the right version to use of uberfire/uberfire-extensions <br> ******************************************************** <br> ")
+    stringParam("DASHBUILDER_VERSION", "0.4.1.20160730-productized", "please edit the right version to use of dashbuilder <br> ******************************************************** <br> ")
     stringParam("ERRAI_VERSION", "3.2.4.Final", "please edit the right version to use of errai <br> ******************************************************** <br> ")                
   };
   
@@ -42,7 +42,7 @@ job("01.push-release-branches-6.4.x") {
   }
 }
 
-nestedView("Releases") {
+nestedView("productization-Releases") {
     views {
         listView("KIE-productized-6.4.x") {
             jobs {
