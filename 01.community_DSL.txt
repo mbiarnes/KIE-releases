@@ -11,7 +11,7 @@ cd /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job
 sh /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
 
 """
-job("automatic-created-DSL-releases-job") {
+job("automatic-created-DSL-release-job") {
   
   parameters {
     stringParam("TARGET", "community", "this release is for community")
