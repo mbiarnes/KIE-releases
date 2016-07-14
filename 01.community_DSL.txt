@@ -1,0 +1,74 @@
+def cloneScript = 
+"""
+# clone CHESTNUT
+git clone git@github.com:mbiarnes/KIE-releases.git
+
+"""
+
+def viewScript =
+"""
+cd /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job
+sh /home/mbiarnes/.jenkins/workspace/automatic-created-DSL-job/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
+
+"""
+job("automatic-created-DSL-job") {
+  
+  parameters {
+    stringParam("TARGET", "community", "this release is for community")
+    choiceParam("SOURCE", ["community-branch", "community-tag"], " Please select the source of this release <br>
+                 
+
+ ******************************************************** <br> <br> ")
+    stringParam("TAG", "Please enter the name of the tag", "bla bla")
+    stringParam("RELEASE_VERSION", "6.4.0.Final", "this release is for community")
+    stringParam("RELEASE_BRANCH", "r6.4.0.Final", "this release is for community")
+    stringParam("UBERFIRE_VERSION", "0.8.0.Final", "please edit the right version to use of uberfire/uberfire-extensions")
+    stringParam("DASHBUILDER_VERSION", "0.4.0.Final", "please edit the right version to use of dashbuilder")
+    stringParam("ERRAI_VERSION", "3.2.4.Final", "please edit the right version to use of errai")                
+  };
+  
+  jdk("jdk1.7") 
+  
+  wrappers {
+    timestamps()
+    colorizeOutput()
+    preBuildCleanup()
+  }  
+  
+ 
+  steps {
+    environmentVariables {
+        envs(MAVEN_OPTS :"-Xms2g -Xmx3g -XX:MaxPermSize=512m", MAVEN_HOME: "/usr/local/maven/apache-maven-3.2.3")
+    }    
+    shell(cloneScript)
+    shell(viewScript)
+  }
+}
+
+listView("automatic-created-View") {
+    
+    description("all automatic jobs created by DSL")
+    filterBuildQueue()
+    filterExecutors()
+    
+    jobs {
+        name("automatic-created-DSL-job")
+    }
+    
+    jobFilters {
+        status {
+            status(Status.UNSTABLE)
+        }
+    }
+    
+    columns {
+      status()
+      weather()
+      name()
+      lastSuccess()
+      lastFailure()
+      lastDuration()
+      buildButton()
+    }
+         
+}
