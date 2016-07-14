@@ -1,6 +1,23 @@
-if [ "$SOURCE" == "community-tag" ]; then
+# clone the build-bootstrap that contains the other build scripts
+if [ "$SOURCE" == "community-branch" ]; then
+     
+   # clone droolsjbm-build-bootstrap branch from droolsjbpm
+   git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch 6.4.x
+
+   # clone rest of the repos
+   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
    
-# clone droolsjbm-build-bootstrap branch from droolsjbpm
+   # checkout to local release names
+   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH 6.4.x
+   
+   # add new remote pointing to jboss-integration
+   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
+
+fi
+
+if [ "$SOURCE" == "community-tag" ]; then
+
+   # clone droolsjbm-build-bootstrap branch from droolsjbpm
    git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch 6.4.x
 
    # clone rest of the repos
@@ -15,24 +32,31 @@ if [ "$SOURCE" == "community-tag" ]; then
    # checkout to local release names
    ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH $TAG
 
-else
-
-   # clone droolsjbm-build-bootstrap branch from droolsjbpm
-   git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch 6.4.x
-
-   # clone rest of the repos
-   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
-  
-   # checkout to local release names
-   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH 6.4.x
-  
-   # add new remote pointing to jboss-integration
-   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
 
 fi
    
+if [ "$SOURCE" == "production-tag" ]; then
+
+   # clone droolsjbm-build-bootstrap branch from jboss-integration
+   git clone git@github.com:jboss-integration/droolsjbpm-build-bootstrap.git --branch 6.4.x
+
+   # clone rest of the repos
+   ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch 6.4.x --depth 70
+
+   # add new remote pointing to jboss-integration
+   ./droolsjbpm-build-bootstrap/script/git-add-remote-jboss-integration.sh
+   
+   # get the tags of jboss-integration
+   ./droolsjbpm-build-bootstrap/script/git-all.sh fetch --tags jboss-integration
+   
+   # checkout to local release names
+   ./droolsjbpm-build-bootstrap/script/git-all.sh checkout -b $RELEASE_BRANCH $TAG
+
+
+fi
+
 # upgrades the version to the release/tag version
-./droolsjbpm-build-bootstrap/script/release/update-version-all.sh $RELEASE_VERSION community
+./droolsjbpm-build-bootstrap/script/release/update-version-all.sh $RELEASE_VERSION productized
 
 # update kie-parent-metadata
 cd droolsjbpm-build-bootstrap/
@@ -52,4 +76,6 @@ CommitMSG_2="$CommitMSG_1$RELEASE_VERSION"
 ./droolsjbpm-build-bootstrap/script/git-all.sh commit -m "$CommitMSG_2"
 
 # pushes the local release branches to droolsjbpm or to jboss-integration [IMPORTANT: "push -n" (--dryrun) should be replaced by "push" when script will be in production]
-./droolsjbpm-build-bootstrap/script/git-all.sh push origin -n $RELEASE_BRANCH
+./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration $RELEASE_BRANCH
+./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration 6.4.x
+
