@@ -7,11 +7,11 @@ git clone git@github.com:mbiarnes/KIE-releases.git
 
 def cloneScript_02 =
 """
-cd /home/mbiarnes/.jenkins/workspace/created-DSL-community-release-job
-sh /home/mbiarnes/.jenkins/workspace/created-DSL-community-release-job/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
+cd /home/mbiarnes/.jenkins/workspace/push-release-branches
+sh /home/mbiarnes/.jenkins/workspace/push-release-branches/KIE-releases/01.KIE-communityRelease_push-release-branches.sh
 
 """
-job("created-DSL-community-release-job") {
+job("push-release-branches") {
   
   parameters {
     stringParam("TARGET", "community", "this release is for community")
@@ -42,30 +42,19 @@ job("created-DSL-community-release-job") {
   }
 }
 
-listView("created-release-View") {
-    
-    description("all automatic jobs created by DSL")
-    filterBuildQueue()
-    filterExecutors()
-    
-    jobs {
-        name("created-DSL-community-release-job")
-    }
-    
-    jobFilters {
-        status {
-            status(Status.UNSTABLE)
+nestedView("Releases") {
+    views {
+        listView("KIE-community-6.4.x") {
+            jobs {
+                name("push-release-branches")
+            }
+            columns {
+                status()
+                weather()
+                name()
+                lastSuccess()
+                lastFailure()
+            }
         }
     }
-    
-    columns {
-      status()
-      weather()
-      name()
-      lastSuccess()
-      lastFailure()
-      lastDuration()
-      buildButton()
-    }
-         
 }
