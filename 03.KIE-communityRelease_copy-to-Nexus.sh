@@ -5,13 +5,15 @@ if [ -f "$file" ]; then
    rm $file
 fi
 
-touch TEST
-
 #fetch automatically version of kie-release
 cd $HOME/.jenkins/workspace/02.build-deploy-6.4.x/droolsjbpm-build-bootstrap
 KIE_VERSION=$(sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -n -e 's/<version.org.kie>\(.*\)<\/version.org.kie>/\1/p' pom.xml) 
 
-DEPLOY_DIR=$HOME/.jenkins/workspace/02.build-deploy-6.4.x/Deploy_dir
+# copy Deploy_dir
+cd $WORKSPACE
+cp -r $HOME/.jenkins/workspace/02.build-deploy-6.4.x/Deploy_dir .
+
+DEPLOY_DIR=Deploy_dir
 
 cd $HOME/.jenkins/workspace/02.build-deploy-6.4.x
 
