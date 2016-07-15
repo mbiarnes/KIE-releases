@@ -17,7 +17,7 @@ find /tmp -maxdepth 1 -user `whoami` -exec rm -rf {} \;
 #git clone git@github.com:droolsjbpm/droolsjbpm-build-bootstrap.git --branch $RELEASE_BRANCH
 # this is a temporarily change and has to be removed when script gets copied into droolsjbpm-build-bootstrap.
 # the previous line should enabled
-git clone git@github.com:michibk/droolsjbpm-build-bootstrap.git --branch $RELEASE_BRANCH   
+git clone git@github.com:mbiarnes/droolsjbpm-build-bootstrap.git --branch $RELEASE_BRANCH   
 # clone rest of the repos and checkout to this branch
 ./droolsjbpm-build-bootstrap/script/git-clone-others.sh --branch $RELEASE_BRANCH --depth 100 
 
