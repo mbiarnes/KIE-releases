@@ -41,7 +41,7 @@ job("02.build-deploy-6.4.x") {
     archiveJunit("**/target/*-reports/TEST-*.xml")
     }
   
-  nestedView("community-Releases") {
+  nestedView("productization-Releases") {
     views {
         listView("KIE-community-6.4.x") {
             jobs {
