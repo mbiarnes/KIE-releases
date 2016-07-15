@@ -10,6 +10,8 @@ def cloneScript_02 =
 cd /home/mbiarnes/.jenkins/workspace/02.build-deploy-6.4.x
 sh /home/mbiarnes/.jenkins/workspace/02.build-deploy-6.4.x/KIE-releases/02.KIE-communityRelease_build-deploy.sh
 
+"""
+
 job("02.build-deploy-6.4.x") {
   
   description("This job: <br> - builds and deploys locally the release branches")
@@ -55,3 +57,4 @@ job("02.build-deploy-6.4.x") {
         }
     }
   }
+}
