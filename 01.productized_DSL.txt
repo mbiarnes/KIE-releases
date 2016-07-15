@@ -8,7 +8,7 @@ git clone git@github.com:mbiarnes/KIE-releases.git
 def cloneScript_02 =
 """
 cd /home/mbiarnes/.jenkins/workspace/01.push-release-branches-6.4.x
-sh /home/mbiarnes/.jenkins/workspace/01.push-release-branches-6.4.x/KIE-releases/01.KIE-productizedTag_push-release-branches.sh
+sh /home/mbiarnes/.jenkins/workspace/01.push-release-branches-6.4.x/KIE-releases/01.KIE-productizationTag_push-release-branches.sh
 
 """
 job("01.push-release-branches-6.4.x") {
@@ -16,7 +16,7 @@ job("01.push-release-branches-6.4.x") {
   description("This job: <br> - clones all repositories <br> - upgrades the version in poms <br> - modifies the kie-parent-metadata pom <br> - pushes the generated release branches to jboss-integration")
   
   parameters {
-    stringParam("TARGET", "productized", "this release is for community")
+    stringParam("TARGET", "productized", "this is tag for productazation")
     choiceParam("SOURCE", ["community-branch", "community-tag", "production-tag"], " please select the source of this release <br> or it is the 6.4.x branch ( <b> community-branch </b> ) a community tag ( <b> community-tag </b> ) or a product tag ( <b> propduct-tag </b> ) <br> ******************************************************** <br> ")
     stringParam("TAG", "sync-6.4.x-2016.07.30", "if you selected as <b> SOURCE= </b> community-tag or product-tag please edit the name of the tag <br> if selected as <b> SOURCE= </b> community-branch the parameter <b> TAG </b> will be ignored <br> i.e. typically <b> sync-6.4.x-2016.07.30</b> <br> ******************************************************** <br> ")
     stringParam("RELEASE_VERSION", "6.4.1.20160730-productized", "please edit the version for this release <br> i.e. typically <b> 6.4.1.20160730-productized </b> <br> ******************************************************** <br> ")
