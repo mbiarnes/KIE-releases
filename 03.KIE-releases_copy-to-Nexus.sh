@@ -15,16 +15,12 @@ fi
 cd $HOME/.jenkins/workspace/02.build-deploy-6.4.x/droolsjbpm-build-bootstrap
 KIE_VERSION=$(sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -n -e 's/<version.org.kie>\(.*\)<\/version.org.kie>/\1/p' pom.xml) 
 
-echo "KIE_VERSION="$KIE_VERSION
+cd $WORKSPACE
 
 #copies here the deploy dir from 02.build-deploy-6.4.x
 cp -r $HOME/.jenkins/workspace/02.build-deploy-6.4.x/Deploy_dir .
 
-ls -al
-
 DEPLOY_DIR=Deploy_dir
-
-echo "DEPLOY_DIR"=$DEPLOY_DIR
 
 #creates a properties file to pass variables
 echo KIE_VERSION=$KIE_VERSION > kie.properties
