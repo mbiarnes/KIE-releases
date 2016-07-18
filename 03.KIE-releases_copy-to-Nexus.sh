@@ -16,7 +16,7 @@ cd $HOME/.jenkins/workspace/02.build-deploy-6.4.x/droolsjbpm-build-bootstrap
 KIE_VERSION=$(sed -e 's/^[ \t]*//' -e 's/[ \t]*$//' -n -e 's/<version.org.kie>\(.*\)<\/version.org.kie>/\1/p' pom.xml) 
 
 #copies here the deploy dir from 02.build-deploy-6.4.x
-cp -r $HOME/.jenkins/workspace/02.build-deploy-6.4.x/Deploy-dir .
+cp -r $HOME/.jenkins/workspace/02.build-deploy-6.4.x/Deploy_dir .
 
 DEPLOY_DIR=Deploy_dir
 
