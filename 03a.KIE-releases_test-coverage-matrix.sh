@@ -19,4 +19,8 @@ wget -q https://repository.jboss.org/nexus/content/groups/$STAGING_REP/org/jbpm/
 
 tar xzf sources.tar.gz
 mv jbpm-$KIE_VERSION/* .
-#rmdir jbpm-$KIE_VERSION
+rm -rf jbpm-$KIE_VERSION
+rm -rf sources.tar.gz
+
+# execute tests
+mvn clean verify -e -B -Dmaven.test.failure.ignore=true -Dintegration-tests
