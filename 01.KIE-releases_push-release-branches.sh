@@ -77,8 +77,8 @@ CommitMSG_2="$CommitMSG_1$RELEASE_VERSION"
 
 # pushes the local release branches to droolsjbpm or to jboss-integration [IMPORTANT: "push -n" (--dryrun) should be replaced by "push" when script will be in production]
 if [ "$TARGET" == "community" ]; then
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push -n origin $RELEASE_BRANCH
+  ./droolsjbpm-build-bootstrap/script/git-all.sh push  origin $RELEASE_BRANCH
 else
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration $RELEASE_BRANCH
-  ./droolsjbpm-build-bootstrap/script/git-all.sh push -n jboss-integration $BASE_BRANCH
+  ./droolsjbpm-build-bootstrap/script/git-all.sh push  jboss-integration $RELEASE_BRANCH
+  ./droolsjbpm-build-bootstrap/script/git-all.sh push  jboss-integration $BASE_BRANCH
 fi
