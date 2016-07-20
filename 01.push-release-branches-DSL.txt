@@ -24,7 +24,11 @@ job("01.push-release-branches-6.4.x") {
     stringParam("RELEASE_VERSION", "6.4.0.Final", "please edit the version for this release <br> The <b> RELEASE_VERSION </b> should typically look like <b> 6.4.0.Final </b> for <b> community </b> or <b> 6.4.1.20160730-productization </b> for <b> productization </b> <br>******************************************************** <br> ")
     stringParam("RELEASE_BRANCH", "r6.4.0.Final", "please edit the name of the release branch <br> i.e. typically <b> r6.4.0.Final </b> for <b> community </b>or <b> bsync-6.4.x-2016.07.30  </b> for <b> productization </b> <br> ******************************************************** <br> ")
     stringParam("UBERFIRE_VERSION", "0.8.0.Final", "please edit the right version to use of uberfire/uberfire-extensions <br> The tag should typically look like <b> 6.4.0.Final </b> for <b> community </b> or <b> 0.8.1.20160730-productization </b> for <b> productization </b> <br> ******************************************************** <br> ")
-    stringParam("DASHBUILDER_VERSION", "0.4.0.Final", "please edit the right version to use of dashbuilder <br> The tag should typically look like <b> 6.4.0.Final </b> for <b> community </b> or <b> 0.8.1.20160730-productization </b> for <b> productization </b> <br> ******************************************************** <br> ")                
+    stringParam("DASHBUILDER_VERSION", "0.4.0.Final", "please edit the right version to use of dashbuilder <br> The tag should typically look like <b> 6.4.0.Final </b> for <b> community </b> or <b> 0.8.1.20160730-productization </b> for <b> productization </b> <br> ******************************************************** <br> ")
+    labelParam("kie-releases") {
+       defaultValue("kie-releases")
+       description("this script should be executed only on kie-releases")
+    } 
   };
   
   jdk("jdk1.7") 
