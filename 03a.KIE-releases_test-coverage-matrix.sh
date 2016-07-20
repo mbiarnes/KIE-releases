@@ -19,4 +19,4 @@ wget -q https://repository.jboss.org/nexus/content/groups/$STAGING_REP/org/jbpm/
 
 tar xzf sources.tar.gz
 mv jbpm-$KIE_VERSION/* .
-rmdir jbpm-$KIE_VERSION
+#rmdir jbpm-$KIE_VERSION
